@@ -1,3 +1,5 @@
 .stack-work
 out
 .shake
+dist-newstyle
+.sass-cache

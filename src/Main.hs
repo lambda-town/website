@@ -1,11 +1,17 @@
 module Main where
 
-import LambdaTown.Build.Home
+import Data.Functor (($>))
+import Development.Shake
+import LambdaTown.Build.Commons (removeEverything)
+import LambdaTown.Build.Home (buildHome)
+import LambdaTown.Build.Sass (compileSheets)
 import Slick.Shake (slick)
-import Development.Shake.Forward ( shakeArgsForward )
-import           Development.Shake
+
+buildEverything :: Action ()
+buildEverything = do
+  removeEverything
+  sheets <- compileSheets
+  buildHome sheets
 
 main :: IO ()
-main = do
-  let shOpts = shakeOptions { shakeVerbosity = Chatty, shakeLintInside = ["\\"]}
-  shakeArgsForward shOpts buildHome
+main = shake shakeOptions $ action buildEverything

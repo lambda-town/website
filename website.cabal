@@ -19,21 +19,26 @@ executable website
   hs-source-dirs:      src
   other-modules:
     LambdaTown.Build.Home
+    LambdaTown.Build.Commons
+    LambdaTown.Build.Sass
+    LambdaTown.Templates.Home
     LambdaTown.Data
-
   -- other-extensions:
+  extra-libraries: 
+    iconv
   build-depends: 
     base, 
     shake,
     slick,
     text,
     aeson,
-    aeson-casing,
     lens,
     lens-aeson,
     text,
+    containers,
     blaze-html,
     bytestring,
+    directory,
     yaml
   -- hs-source-dirs:
   default-language:    Haskell2010
