@@ -1,0 +1,15 @@
+{
+  "name": "lambdatown-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guillaume Bogard <hey@guillaumebogard.dev>",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.0.0-alpha3",
+    "feather-icons": "^4.28.0"
+  }
+}

@@ -1,3 +1,5 @@
+@import "./bootstrap.scss";
+
 $twinkleBlue: #d1d8e0;
 
 html, body {
@@ -6,4 +8,19 @@ html, body {
   padding: 0;
   margin: 0;
   background: $twinkleBlue;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+
+  svg {
+    height: 1rem;
+  }
+}
+
+.btn-rounded {
+  border-radius: 10rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }

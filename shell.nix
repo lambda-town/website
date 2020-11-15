@@ -6,6 +6,7 @@ let
     sass
     libiconv
     zlib
+    nodejs
   ];
 in pkgs.stdenv.mkDerivation {
   name = "lambda-town-shell";

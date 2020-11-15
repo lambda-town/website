@@ -4,7 +4,7 @@ import Data.Aeson (FromJSON)
 import Data.ByteString.Builder (stringUtf8, toLazyByteString)
 import Data.ByteString.Lazy (toStrict)
 import Data.Yaml (decodeThrow)
-import Development.Shake (Action, liftIO, writeFile', removeFiles)
+import Development.Shake (Action, liftIO, removeFiles, writeFile')
 import Development.Shake.Command
 import Text.Blaze.Html (Html)
 import Text.Blaze.Html.Renderer.String (renderHtml)

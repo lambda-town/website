@@ -22,6 +22,8 @@ executable website
     LambdaTown.Build.Commons
     LambdaTown.Build.Sass
     LambdaTown.Templates.Home
+    LambdaTown.Build.Videos
+    LambdaTown.Templates.Layout
     LambdaTown.Data
   -- other-extensions:
   extra-libraries: 
@@ -37,8 +39,10 @@ executable website
     text,
     containers,
     blaze-html,
+    blaze-markup,
     bytestring,
     directory,
+    pandoc,
     yaml
   -- hs-source-dirs:
   default-language:    Haskell2010

@@ -1,6 +1,54 @@
 @import "./commons.scss";
 
+$gradient-start: #4a4c65;
+$gradient-end: #323347;
+
 #hero {
-  background-color: white;
-  padding: 3rem 1rem;
+  background-color: $gradient-start;
+  background-image: linear-gradient(45deg, $gradient-start, $gradient-end);
+  color: white;
+
+  h1 {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  #hero-content {
+    @extend .container-xl;
+    padding: 4rem 1rem;
+
+    @include media-breakpoint-up(md) {
+      padding-bottom: 8rem;
+    }
+
+    p {
+      @extend .lead;
+      margin: 2rem 0;
+    }
+  }
+}
+
+#main-content {
+  @extend .container-xl;
+  position: relative;
+  top: -2rem;
+  @include media-breakpoint-up(md) { 
+    top: -5rem;
+  }
+}
+
+.video-card {
+  @extend .card;
+
+  background: none;
+  border: none;
+
+  .card-body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }

@@ -7,8 +7,11 @@ import Slick
 
 buildVideo :: FilePath -> Action Video
 buildVideo path = do
+  liftIO . putStrLn $ "Building video " <> path
   content <- readFile' path
-  markdownToHTML' . T.pack $ content
+  video <- markdownToHTML' . T.pack $ content
+  let videoUrl = getUrl video
+  return video
 
 buildAllVideos :: Action [Video]
 buildAllVideos = do

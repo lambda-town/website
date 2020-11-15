@@ -1,1 +1,4 @@
-headline: "Making functional programming approachable"
+headline: "Functional programming made approachable"
+heroText: > 
+  Lambda Town is a website and Youtube channel focused on<br/>
+  teaching functional programming using the Scala & Haskell ecosystems
