@@ -27,17 +27,17 @@ renderHome
       opts = layoutOpts {pageTitle, styleSheets}
 
 renderVideo :: Video -> Html
-renderVideo video = do
-  let Video {vidTitle, vidYoutubeId, vidContent, vidExcerpt} = video
+renderVideo vid = do
+  let Video {vidTitle, vidYoutubeId, vidExcerpt} = vid
   let (Url imgUrl) = getThumbnailUrl vidYoutubeId
-  let link = a ! (href . toValue . getUrl) video
+  let link' = a ! (href . toValue . getUrl) vid
   H.div ! class_ "col-sm-12 col-md-4" $ do
     H.div ! class_ "video-card" $ do
-      link $ do
+      link' $ do
         img ! class_ "card-img-top" ! (src . toValue) imgUrl ! (alt . toValue) vidTitle
       H.div ! class_ "card-body" $ do
-        link $ h5 ! class_ "card-title" $ toHtml vidTitle
+        link' $ h5 ! class_ "card-title" $ toHtml vidTitle
         (p . toHtml) (vidExcerpt <> "...")
-        link ! class_ "btn btn-rounded btn-outline-secondary" $ do
+        link' ! class_ "btn btn-rounded btn-outline-secondary" $ do
           i ! dataAttribute "feather" "play" $ mempty
           "See the video"

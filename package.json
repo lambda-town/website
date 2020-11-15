@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "netlify deploy --dir=out --prod",
+    "sass": "sass"
   },
   "author": "Guillaume Bogard <hey@guillaumebogard.dev>",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.0.0-alpha3",
     "feather-icons": "^4.28.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^2.68.5",
+    "sass": "^1.29.0"
   }
 }

@@ -1,6 +1,5 @@
 module LambdaTown.Build.Home where
 
-import qualified Data.Yaml as Y
 import Development.Shake
 import LambdaTown.Build.Commons (decodeYaml, outputFolder, writeHtml)
 import LambdaTown.Data

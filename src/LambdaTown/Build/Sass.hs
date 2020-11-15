@@ -1,7 +1,6 @@
 module LambdaTown.Build.Sass (compileSheets, sassFolder) where
 
 import Data.Functor
-import qualified Data.Map
 import Development.Shake
 import Development.Shake.Classes
 import Development.Shake.FilePath (dropExtension)
@@ -28,7 +27,6 @@ compileSheet :: FilePath -> Action (Url, Action ())
 compileSheet input = do
   let inputFile = sassFolder <> input
   (outputPath, outputUrl) <- getSheetOutputPathAndUrl input
-  fileContent <- readFile' inputFile
   return (outputUrl, compileSheet' inputFile outputPath)
 
 -- | Calls the 'sass' command given an input path and and output path
@@ -36,7 +34,7 @@ compileSheet' :: FilePath -> FilePath -> Action ()
 compileSheet' inputFile outputPath = do
   (liftIO . putStrLn) $ "Building Saas Sheet " <> inputFile <> " to " <> outputPath
   (liftIO . createDirectoryIfMissing True) (outputFolder <> "sass/")
-  cmd_ "sass" inputFile outputPath "--style compressed"
+  cmd_ "npm run sass" inputFile outputPath "--" "--style compressed"
 
 -- | Generates an output path and URL for a compiled CSS sheet, given a path
 -- to a Saas sheet. The url will include a hash computed from the content of the Saas sheet.

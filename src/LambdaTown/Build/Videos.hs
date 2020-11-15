@@ -10,7 +10,7 @@ buildVideo path = do
   liftIO . putStrLn $ "Building video " <> path
   content <- readFile' path
   video <- markdownToHTML' . T.pack $ content
-  let videoUrl = getUrl video
+  -- let videoUrl = getUrl video
   return video
 
 buildAllVideos :: Action [Video]

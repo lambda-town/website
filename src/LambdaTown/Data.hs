@@ -6,7 +6,7 @@
 module LambdaTown.Data where
 
 import Data.Aeson
-import Data.Char (isAlphaNum, toLower)
+import Data.Char (isAlphaNum)
 import Data.String (IsString)
 import qualified Data.Text as T
 import GHC.Generics (Generic)
@@ -45,7 +45,7 @@ instance HasUrl Video where getUrl = getUrl . VideoPage . slug
 
 -- | Retrieve a URL to a video thumbnail from its YoutubeId
 getThumbnailUrl :: YoutubeId -> Url
-getThumbnailUrl (YoutubeId id) = Url $ "https://img.youtube.com/vi/" <> id <> "/maxresdefault.jpg"
+getThumbnailUrl (YoutubeId vidId) = Url $ "https://img.youtube.com/vi/" <> vidId <> "/maxresdefault.jpg"
 
 {-
   Pages
@@ -100,7 +100,7 @@ data Route
 
 instance HasUrl Route where
   getUrl HomePage = Url "/index.html"
-  getUrl (VideoPage (Slug slug)) = Url $ "/video/" <> slug <> ".html"
+  getUrl (VideoPage (Slug vidSlug)) = Url $ "/video/" <> vidSlug <> ".html"
 
 htmlToExcerpt :: Int -> String -> String
 htmlToExcerpt size input = either show id $

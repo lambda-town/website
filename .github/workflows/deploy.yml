@@ -1,0 +1,43 @@
+name: Deployment workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Setup stack
+        uses: mstksg/setup-stack@v1
+      - name: Cache stack
+        uses: actions/cache@v2
+        with:
+          path: |
+            .stack-work
+            ~/.stack
+          key: stack-cache
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+      - name: Install node dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
+      - name: Build website
+        run: | 
+          stack build --pedantic
+          stack run
+      - name: Deploy to netlify
+        run: npm run deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

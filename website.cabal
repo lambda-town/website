@@ -26,8 +26,6 @@ executable website
     LambdaTown.Templates.Layout
     LambdaTown.Data
   -- other-extensions:
-  extra-libraries: 
-    iconv
   build-depends: 
     base, 
     shake,
@@ -37,7 +35,6 @@ executable website
     lens,
     lens-aeson,
     text,
-    containers,
     blaze-html,
     blaze-markup,
     bytestring,
