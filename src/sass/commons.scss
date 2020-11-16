@@ -1,7 +1,7 @@
 @import "./bootstrap.scss";
 
 $twinkleBlue: #d1d8e0;
-$darkBlueishGray: #323347;
+$darkBlueishGray: #2e2f42;
 
 html, body {
   min-height: 100vh;
@@ -28,4 +28,13 @@ html, body {
 
 nav.navbar {
   background-color: darken($darkBlueishGray, 3%);
+  font-family: 'Nunito', sans-serif;
+
+  .navbar-brand {
+    font-weight: bold;
+    img {
+      @extend .mr-2;
+      height: 2.1rem;
+    }
+  }
 }

@@ -4,7 +4,7 @@ import Data.Aeson (FromJSON)
 import Data.ByteString.Builder (stringUtf8, toLazyByteString)
 import Data.ByteString.Lazy (toStrict)
 import Data.Yaml (decodeThrow)
-import Development.Shake (Action, liftIO, removeFiles, writeFile')
+import Development.Shake
 import Text.Blaze.Html (Html)
 import Text.Blaze.Html.Renderer.String (renderHtml)
 
@@ -19,6 +19,13 @@ writeHtml path = writeFile' path . renderHtml
 
 removeEverything :: Action ()
 removeEverything = liftIO $ removeFiles outputFolder ["//*"]
+
+copyStaticFiles :: Action ()
+copyStaticFiles = do
+  filepaths <- getDirectoryFiles assetsFolder ["//*"]
+  _ <- forP filepaths $ \filepath -> 
+    copyFileChanged (assetsFolder <> filepath) (outputFolder <> "assets/" <> filepath)
+  return ()
 
 assetsFolder :: FilePath
 assetsFolder = "content/assets/"

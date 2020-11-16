@@ -7,4 +7,6 @@ import Text.Blaze.Html5.Attributes as A
 
 navbar :: Html
 navbar = (nav ! class_ "navbar navbar-dark") . (H.div ! class_ "container-xl") $ do
-  a ! href "/" ! class_ "navbar-brand" $ "Lambda Town"
+  a ! href "/" ! class_ "navbar-brand" $ do
+    img ! alt "Lambda Town Logo" ! src "/assets/navbar-icon.png"
+    "lambda.town"

@@ -24,7 +24,7 @@ renderHome
       H.div ! A.id "main-content" $ do
         H.div ! class_ "row justify-content-start" $ forM_ videos renderVideo
     where
-      pageTitle = "LambdaTown"
+      pageTitle = "Lambda Towm, functional programming made approachable"
       styleSheets = [homepageSheet]
       opts = layoutOpts {pageTitle, styleSheets}
 
