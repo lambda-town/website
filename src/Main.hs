@@ -10,7 +10,7 @@ buildEverything :: Action ()
 buildEverything = do
   removeEverything
   (sheets, doCompileSheets) <- compileSheets
-  videos <- buildAllVideos
+  videos <- buildAllVideos sheets
   _ <- par (buildHome sheets videos) doCompileSheets
   return ()
 

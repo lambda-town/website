@@ -6,6 +6,7 @@ module LambdaTown.Templates.Home (renderHome) where
 import Control.Monad (forM_)
 import LambdaTown.Data
 import LambdaTown.Templates.Layout
+import LambdaTown.Templates.Nav (navbar)
 import Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
 
@@ -15,6 +16,7 @@ renderHome
   StyleSheets {homepageSheet}
   videos =
     layout opts $ do
+      navbar
       H.div ! A.id "hero" $ do
         H.div ! A.id "hero-content" $ do
           (h1 . toHtml) homeHeadline
@@ -34,7 +36,7 @@ renderVideo vid = do
   H.div ! class_ "col-sm-12 col-md-4" $ do
     H.div ! class_ "video-card" $ do
       link' $ do
-        img ! class_ "card-img-top" ! (src . toValue) imgUrl ! (alt . toValue) vidTitle
+        img ! class_ "card-img-top rounded" ! (src . toValue) imgUrl ! (alt . toValue) vidTitle
       H.div ! class_ "card-body" $ do
         link' $ h5 ! class_ "card-title" $ toHtml vidTitle
         (p . toHtml) (vidExcerpt <> "...")

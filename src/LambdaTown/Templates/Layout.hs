@@ -13,6 +13,11 @@ data LayoutOpts = LayoutOpts
     styleSheets :: [Url]
   }
 
+narrowContainer :: Html -> Html
+narrowContainer =
+  (H.div ! class_ "container-fluid")
+    . (H.div ! class_ "row justify-content-center")
+    . (H.div ! class_ "col-md-9 col-lg-8 col-xl-6 p-2 p-lg-3")
 
 layoutOpts :: LayoutOpts
 layoutOpts =

@@ -24,6 +24,8 @@ executable website
     LambdaTown.Templates.Home
     LambdaTown.Build.Videos
     LambdaTown.Templates.Layout
+    LambdaTown.Templates.Videos
+    LambdaTown.Templates.Nav
     LambdaTown.Data
   -- other-extensions:
   build-depends: 

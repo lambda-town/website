@@ -1,3 +1,5 @@
+{-# LANGUAGE NamedFieldPuns #-}
+
 module LambdaTown.Build.Sass (compileSheets, sassFolder) where
 
 import Data.Functor
@@ -14,9 +16,10 @@ import System.Directory (createDirectoryIfMissing)
 -- Then the nested action is used to actually compile the sheets
 compileSheets :: Action (StyleSheets, Action ())
 compileSheets = do
-  (homeUrl, compileHome) <- compileSheet "home.scss"
-  let sheets = StyleSheets homeUrl
-  let compileAll = parallel [compileHome] $> ()
+  (homepageSheet, compileHome) <- compileSheet "home.scss"
+  (videoPageSheet, compileVideoPage) <- compileSheet "videoPage.scss"
+  let sheets = StyleSheets {homepageSheet, videoPageSheet}
+  let compileAll = parallel [compileHome, compileVideoPage] $> ()
   return (sheets, compileAll)
 
 -- | Compiles a single SASS sheet into CSS.

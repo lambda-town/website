@@ -10,8 +10,8 @@ import Data.Char (isAlphaNum)
 import Data.String (IsString)
 import qualified Data.Text as T
 import GHC.Generics (Generic)
-import Text.Pandoc
 import Text.Blaze.Html5 (ToValue)
+import Text.Pandoc
 
 {-
   Videos
@@ -69,8 +69,9 @@ instance FromJSON HomeContent where
 -- | This represents compiled style sheets for the entire website.
 -- The plan is to have at most one sheet per page if possible, to reduce load times
 -- This record is built once every sheet has been processed, and then passed to templates that need it.
-newtype StyleSheets = StyleSheets
-  { homepageSheet :: Url
+data StyleSheets = StyleSheets
+  { homepageSheet :: Url,
+    videoPageSheet :: Url
   }
 
 {-

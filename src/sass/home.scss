@@ -1,7 +1,7 @@
 @import "./commons.scss";
 
 $gradient-start: #4a4c65;
-$gradient-end: #323347;
+$gradient-end: $darkBlueishGray;
 
 #hero {
   background-color: $gradient-start;
@@ -14,7 +14,7 @@ $gradient-end: #323347;
 
   #hero-content {
     @extend .container-xl;
-    padding: 4rem 1rem;
+    padding: 5rem 1rem;
 
     @include media-breakpoint-up(md) {
       padding-bottom: 8rem;
@@ -37,7 +37,7 @@ $gradient-end: #323347;
 }
 
 .video-card {
-  @extend .card;
+  @extend .card, .mb-5;
 
   background: none;
   border: none;
