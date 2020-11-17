@@ -5,18 +5,20 @@ module LambdaTown.Templates.Videos (renderVideo) where
 
 import LambdaTown.Data
 import LambdaTown.Templates.Layout
-import LambdaTown.Templates.Nav
+import qualified LambdaTown.Templates.Nav as Nav
 import Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
 
 renderVideo :: StyleSheets -> Video -> Html
 renderVideo StyleSheets {videoPageSheet} vid =
   layout opts $ do
-    navbar
+    Nav.navbar
     narrowContainer $ do
       renderPlayer vid
       ((h1 ! class_ "my-4") . toHtml . vidTitle) vid
       (preEscapedToHtml . vidContent) vid
+      br
+    Nav.footer
   where
     pageTitle = vidTitle vid <> "(Video) - Lambda Town"
     styleSheets = [videoPageSheet]

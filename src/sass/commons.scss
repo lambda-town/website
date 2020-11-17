@@ -3,7 +3,8 @@
 $twinkleBlue: #d1d8e0;
 $darkBlueishGray: #2e2f42;
 
-html, body {
+html,
+body {
   min-height: 100vh;
   width: 100vw;
   padding: 0;
@@ -18,23 +19,38 @@ html, body {
   svg {
     height: 1rem;
   }
-}
 
-.btn-rounded {
-  border-radius: 10rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  &.btn-rounded {
+    border-radius: 10rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 nav.navbar {
   background-color: darken($darkBlueishGray, 3%);
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 
   .navbar-brand {
     font-weight: bold;
     img {
       @extend .mr-2;
       height: 2.1rem;
+    }
+  }
+}
+
+#footer {
+  @extend .py-5, .mt-5;
+  color: white;
+  background-color: $darkBlueishGray;
+  font-family: "Nunito", sans-serif;
+
+  .brand {
+    font-weight: bold;
+    img {
+      @extend .mr-2;
+      height: 2rem;
     }
   }
 }

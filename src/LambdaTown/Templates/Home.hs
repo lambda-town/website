@@ -6,7 +6,7 @@ module LambdaTown.Templates.Home (renderHome) where
 import Control.Monad (forM_)
 import LambdaTown.Data
 import LambdaTown.Templates.Layout
-import LambdaTown.Templates.Nav (navbar)
+import qualified LambdaTown.Templates.Nav as Nav
 import Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
 
@@ -16,7 +16,7 @@ renderHome
   StyleSheets {homepageSheet}
   videos =
     layout opts $ do
-      navbar
+      Nav.navbar
       H.div ! A.id "hero" $ do
         H.div ! A.id "hero-content" $ do
           (h1 . toHtml) homeHeadline
@@ -24,9 +24,10 @@ renderHome
       H.div ! A.id "main-content" $ do
         H.div ! class_ "row justify-content-start" $ forM_ videos renderVideo
         renderMessage homeContent
+      Nav.footer
     where
       HomeContent {homeHeadline, heroText} = homeContent
-      pageTitle = "Lambda Towm, functional programming made approachable"
+      pageTitle = "Lambda Town, functional programming made approachable"
       styleSheets = [homepageSheet]
       opts = layoutOpts {pageTitle, styleSheets}
 
