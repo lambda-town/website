@@ -13,9 +13,8 @@ import GHC.Generics (Generic)
 import Text.Blaze.Html5 (ToValue)
 import Text.Pandoc
 
-{-
-  Videos
- -}
+-- Videos
+-------------------------------------------------------------------
 
 -- | This represents the id of a video hosted on Youtube, e.g. "YWhrrfP3718"
 newtype YoutubeId = YoutubeId String
@@ -45,18 +44,20 @@ instance HasUrl Video where getUrl = getUrl . VideoPage . slug
 
 -- | Retrieve a URL to a video thumbnail from its YoutubeId
 getThumbnailUrl :: YoutubeId -> Url
-getThumbnailUrl (YoutubeId vidId) = Url $ "https://img.youtube.com/vi/" <> vidId <> "/maxresdefault.jpg"
+getThumbnailUrl (YoutubeId vidId) =
+  Url $ "https://img.youtube.com/vi/" <> vidId <> "/maxresdefault.jpg"
 
-{-
-  Pages
--}
+-- Home page
+----------------------------------------------------------------------------------------------------
 
 -- | This represents the static content of the home page,
 -- typically obtained by reading a file
 -- This exludes links to videos which are generated from data in the videos folder
 data HomeContent = HomeContent
   { homeHeadline :: String,
-    heroText :: String
+    heroText :: String,
+    messageTitle :: String,
+    messageContent :: String
   }
   deriving (Show, Generic)
 
@@ -65,18 +66,19 @@ instance FromJSON HomeContent where
     HomeContent
       <$> o .: "headline"
       <*> o .: "heroText"
+      <*> ((o .: "aboutMessage") >>= (.: "title"))
+      <*> ((o .: "aboutMessage") >>= (.: "text"))
 
 -- | This represents compiled style sheets for the entire website.
 -- The plan is to have at most one sheet per page if possible, to reduce load times
--- This record is built once every sheet has been processed, and then passed to templates that need it.
+-- This record is built once every sheet has been processed,and then passed to templates that need it.
+
+-- Common types and classes
+----------------------------------------------------------------------------------------------------
 data StyleSheets = StyleSheets
   { homepageSheet :: Url,
     videoPageSheet :: Url
   }
-
-{-
-  Common types and classes
--}
 
 newtype Slug = Slug String
   deriving (Eq, Show, IsString, FromJSON)

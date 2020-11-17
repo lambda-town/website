@@ -30,10 +30,16 @@ $gradient-end: $darkBlueishGray;
 #main-content {
   @extend .container-xl;
   position: relative;
-  top: -2rem;
-  @include media-breakpoint-up(md) { 
+  top: -3rem;
+  @include media-breakpoint-up(md) {
     top: -5rem;
   }
+}
+
+#message {
+  @extend .rounded-3, .p-5, .my-5;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .video-card {

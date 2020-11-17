@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
       - name: Setup stack
-        uses: mstksg/setup-stack@v1
+        uses: mstksg/setup-stack@v2
       - name: Cache stack
         uses: actions/cache@v2
         with:
@@ -34,7 +34,7 @@ jobs:
         run: npm install
       - name: Build website
         run: | 
-          stack build --pedantic
+          stack build --pedantic --exec "stack run"
           stack run
       - name: Deploy to netlify
         run: npm run deploy
