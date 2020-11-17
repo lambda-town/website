@@ -12,7 +12,7 @@ import Text.Blaze.Html5.Attributes as A
 
 renderHome :: HomeContent -> StyleSheets -> [Video] -> Html
 renderHome
-  content
+  homeContent
   StyleSheets {homepageSheet}
   videos =
     layout opts $ do
@@ -23,9 +23,9 @@ renderHome
           (p . preEscapedToHtml) heroText
       H.div ! A.id "main-content" $ do
         H.div ! class_ "row justify-content-start" $ forM_ videos renderVideo
-        renderMessage content
+        renderMessage homeContent
     where
-      HomeContent {homeHeadline, heroText} = content
+      HomeContent {homeHeadline, heroText} = homeContent
       pageTitle = "Lambda Towm, functional programming made approachable"
       styleSheets = [homepageSheet]
       opts = layoutOpts {pageTitle, styleSheets}
